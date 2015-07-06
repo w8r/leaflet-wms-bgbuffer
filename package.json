@@ -1,0 +1,38 @@
+{
+  "name": "leaflet-wms-bgbuffer",
+  "version": "1.0.0",
+  "description": "Plugin to enable background buffer in WMS layers to achieve smooth reloading",
+  "main": "dist/TileLayer.WMS.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:w8r/leaflet-wms-bgbuffer.git"
+  },
+  "keywords": [
+    "leaflet",
+    "wms",
+    "smooth",
+    "bgbuffer",
+    "background",
+    "animation"
+  ],
+  "author": "Alexander Milevski <info@w8r.name>",
+  "license": "MIT",
+  "dependencies": {
+    "leaflet": "^0.7.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jasmine": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.12.37",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "karma-spec-reporter": "0.0.19",
+    "phantomjs": "^1.9.17"
+  }
+}
