@@ -1,4 +1,4 @@
-## Leaflet.TileLayer.WMS with bgbuffer
+## Leaflet.TileLayer.WMS with bgbuffer [![npm version](https://badge.fury.io/js/leaflet-wms-bgbuffer.svg)](http://badge.fury.io/js/leaflet-wms-bgbuffer) [![Bower version](https://badge.fury.io/bo/leaflet-wms-bgbuffer.svg)](http://badge.fury.io/bo/leaflet-wms-bgbuffer)
 
 Plugin to enable background buffer in WMS layers to achieve smooth reloading
 when changing the params
