@@ -4,7 +4,9 @@
   "description": "Plugin to enable background buffer in WMS layers to achieve smooth reloading",
   "main": "dist/TileLayer.WMS.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "gulp dev",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
     "gulp-jasmine": "^2.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.2.0",

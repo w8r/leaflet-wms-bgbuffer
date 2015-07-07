@@ -4,15 +4,24 @@ describe('L.TileLayer.WMS bgbuffer', function() {
 
   beforeEach(function() {
     var container = document.createElement('div');
-    map = L.map(container);
-    tileLayer = L.tileLayer('{x},{y},{z}', {
-      minZoom: 0,
+    document.body.appendChild(container);
+
+    map = L.map(container).setView([0, 0], 12);
+    tileLayer = new L.TileLayer.WMS('fake/wms', {
       maxZoom: 19
     }).addTo(map);
   });
 
-  it('it should have tests', function() {
-    expect(map.hasLayer(tileLayer)).toBe(true);
+  it('it shoud have _animated forced', function() {
+    expect(tileLayer._animated).toBe(true);
+  });
+
+  it('puts tiles in background buffer on reset', function() {
+    var bgbuffer = tileLayer._bgBuffer;
+    tileLayer.setParams({
+      format: 'image/png'
+    });
+    expect(tileLayer._tileContainer).toEqual(bgbuffer);
   });
 
 });

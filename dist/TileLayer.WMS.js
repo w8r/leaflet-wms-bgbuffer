@@ -18,21 +18,7 @@
 }(function(L) {
   'use strict';
 
-
   L.TileLayer.WMS.include({
-
-    /**
-     * @param  {evision.gis.Map} map
-     */
-    onAdd: function(map) {
-      this._crs = this.options.crs || map.options.crs;
-      this._wmsVersion = parseFloat(this.wmsParams.version);
-
-      var projectionKey = this._wmsVersion >= 1.3 ? 'crs' : 'srs';
-      this.wmsParams[projectionKey] = this._crs.code;
-
-      L.TileLayer.prototype.onAdd.call(this, map);
-    },
 
     /**
      * Smooth redraw, put tiles into the backbuffer, then
@@ -52,7 +38,7 @@
     },
 
     /**
-     * Override for old ie to have bg buffer for tiles
+     * Override for old IE, just to have bg buffer for tiles
      */
     _initContainer: function() {
       this._animated = true;
@@ -71,6 +57,7 @@
       }
       return true;
     }
+
   });
 
 }));
