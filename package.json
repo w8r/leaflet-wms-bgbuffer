@@ -1,6 +1,6 @@
 {
   "name": "leaflet-wms-bgbuffer",
-  "version": "1.1.0",
+  "version": "0.7.3",
   "description": "Plugin to enable background buffer in WMS layers to achieve smooth reloading",
   "main": "dist/TileLayer.WMS.js",
   "scripts": {
