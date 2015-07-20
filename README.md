@@ -5,7 +5,7 @@ when changing the params
 
 ## [Demo](http://w8r.github.io/leaflet-wms-bgbuffer/example/)
 
-## Development
+## Usage
 
 * npm
 
@@ -25,6 +25,21 @@ or
 ```
 
 Then just work with the WMS layers.
+
+There is an option to switch off the background buffers:
+
+```js
+var wms = new L.TileLayer.WMS('/url', { redrawBuffer: false });
+```
+
+## Dependencies
+
+* Leaflet ^1.0.0
+
+If you want to support Leaflet 0.7.3
+```shell
+npm install leaflet-wms-bgbuffer@0.7.3
+```
 
 ## License
 
