@@ -1,6 +1,8 @@
 "use strict";
 
 var checkboxes = document.querySelectorAll('#legend input[type=checkbox]');
+var url =
+  'http://sampleserver1.arcgisonline.com/ArcGIS/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer';
 
 function getLayerSet() {
   var set = [];
@@ -11,16 +13,28 @@ function getLayerSet() {
 }
 
 var map = L.map('map').setView([45, -93.2], 6);
+var beforeMap = L.map('before').setView([45, -93.2], 6);
+
 var wms = L.tileLayer.wms(
-  'http://sampleserver1.arcgisonline.com/ArcGIS/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer', {
+  url, {
     layers: getLayerSet(),
     transparent: true
   }).addTo(map);
+var beforeWms = L.tileLayer.wms(
+  url, {
+    layers: getLayerSet(),
+    transparent: true,
+    redrawBuffer: false
+  }).addTo(beforeMap);
 
 for (var i = checkboxes.length - 1; i >= 0; i--) {
   L.DomEvent.on(checkboxes[i], 'change', function() {
+    var layers = getLayerSet();
     wms.setParams({
-      layers: getLayerSet()
+      layers: layers
+    });
+    beforeWms.setParams({
+      layers: layers
     });
   });
 }

@@ -18,6 +18,10 @@
 }(function(L) {
   'use strict';
 
+  L.TileLayer.WMS.mergeOptions({
+    redrawBuffer: true
+  });
+
   L.TileLayer.WMS.include({
 
     /**
@@ -25,23 +29,32 @@
      * refill the empty tile container with the new ones in front
      */
     redraw: function() {
-      var front = this._tileContainer;
+      if (this._map) {
+        if (this.options.redrawBuffer) {
+          var front = this._tileContainer;
 
-      this._clearBgBuffer();
-      this._tileContainer = this._bgBuffer;
-      this._bgBuffer = front;
-      this._tiles = {};
-      this._tilesToLoad = 0;
-      this._tilesTotal = 0;
+          this._clearBgBuffer();
+          this._tileContainer = this._bgBuffer;
+          this._bgBuffer = front;
+          this._tiles = {};
+          this._tilesToLoad = 0;
+          this._tilesTotal = 0;
+        } else {
+          this._reset({
+            hard: true
+          });
+        }
 
-      this._update();
+        this._update();
+      }
+      return this;
     },
 
     /**
      * Override for old IE, just to have bg buffer for tiles
      */
     _initContainer: function() {
-      this._animated = true;
+      this._animated = this._animated || this.options.redrawBuffer;
       L.TileLayer.prototype._initContainer.call(this);
     },
 
