@@ -29,6 +29,6 @@
     "tests"
   ],
   "dependencies": {
-    "leaflet": "~0.7.3"
+    "leaflet": "^1.0.0"
   }
 }
