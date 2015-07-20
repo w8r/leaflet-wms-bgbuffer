@@ -18,6 +18,11 @@
 }(function(L) {
   'use strict';
 
+  L.TileLayer.WMS.mergeOptions({
+    clearBufferTimeout: 1000,
+    redrawBuffer: true
+  });
+
   L.TileLayer.WMS.include({
 
     /**
@@ -25,24 +30,28 @@
      * refill the empty tile container with the new ones in front
      */
     redraw: function() {
-      var front = this._tileContainer;
+      var useBuffer = this.options.redrawBuffer;
+      if (this._map) {
+        if (useBuffer) {
+          this._oldTiles = this._tiles;
+          this._tiles = {};
+        }
+        this._removeAllTiles();
+        this._update();
+      }
 
-      this._clearBgBuffer();
-      this._tileContainer = this._bgBuffer;
-      this._bgBuffer = front;
-      this._tiles = {};
-      this._tilesToLoad = 0;
-      this._tilesTotal = 0;
+      if (useBuffer) {
+        this.once('load', function() {
+          setTimeout(L.Util.bind(function() {
+            for (var key in this._oldTiles) {
+              L.DomUtil.remove(this._oldTiles[key].el);
+            }
+            this._oldTiles = {};
+          }, this), this.options.clearBufferTimeout);
+        }, this);
+      }
 
-      this._update();
-    },
-
-    /**
-     * Override for old IE, just to have bg buffer for tiles
-     */
-    _initContainer: function() {
-      this._animated = true;
-      L.TileLayer.prototype._initContainer.call(this);
+      return this;
     },
 
     /**
