@@ -30,8 +30,6 @@ var beforeWms = L.tileLayer.wms(
     redrawBuffer: false
   }).addTo(beforeMap);
 
-beforeMap.on('mo')
-
 for (var i = checkboxes.length - 1; i >= 0; i--) {
   L.DomEvent.on(checkboxes[i], 'change', function() {
     var layers = getLayerSet();
