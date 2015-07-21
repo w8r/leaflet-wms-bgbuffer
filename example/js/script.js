@@ -15,6 +15,9 @@ function getLayerSet() {
 var map = L.map('map').setView([45, -93.2], 6);
 var beforeMap = L.map('before').setView([45, -93.2], 6);
 
+map.sync(beforeMap);
+beforeMap.sync(map);
+
 var wms = L.tileLayer.wms(
   url, {
     layers: getLayerSet(),
@@ -26,6 +29,8 @@ var beforeWms = L.tileLayer.wms(
     transparent: true,
     redrawBuffer: false
   }).addTo(beforeMap);
+
+beforeMap.on('mo')
 
 for (var i = checkboxes.length - 1; i >= 0; i--) {
   L.DomEvent.on(checkboxes[i], 'change', function() {

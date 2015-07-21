@@ -4,6 +4,7 @@ Plugin to enable background buffer in WMS layers to achieve smooth reloading
 when changing the params
 
 ## [Demo](http://w8r.github.io/leaflet-wms-bgbuffer/example/)
+* [Demo using leaflet@0.7.3](http://w8r.github.io/leaflet-wms-bgbuffer/example/0.7.3.html)
 
 ## Usage
 
